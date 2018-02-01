@@ -1,8 +1,9 @@
-package com.br.beerlist.beerlist
+package com.br.beerlist.beerlist.views
 
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.br.beerlist.beerlist.R
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

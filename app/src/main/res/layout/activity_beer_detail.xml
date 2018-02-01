@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.br.beerlist.beerlist.views.BeerDetailActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorSecondaryDark"
+            android:tint="@color/colorPrimaryDark" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/ic_heart"
+                android:text="Skol Beats"
+                android:id="@+id/txt_name"
+                android:textColor="@android:color/black"
+                android:textSize="26sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/ic_heart"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/txt_description"
+                android:maxLines="2"
+                android:layout_below="@+id/txt_name"
+                android:layout_marginLeft="8dp"
+                android:text="Vanilla Bean infused Belgian Quad" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ic_heart"
+                android:tint="@android:color/darker_gray"
+                android:layout_marginRight="8dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_favorite_border" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:text="SHOAHSIAHSIHASIUASHOAHSIAHSIHASIUASHOAHSIAHSIHASIUASHOAHSIAHSIHASIUASHOAHSIAHSIHASIUASHOAHSIAHSIHASIUASHOAHSIAHSIHASIUASHOAHSIAHSIHASIUASHOAHSIAHSIHASIUASHOAHSIAHSIHASIUASHOAHSIAHSIHASIUASHOAHSIAHSIHASIUASHOAHSIAHSIHASIUASHOAHSIAHSIHASIUASHOAHSIAHSIHASIUASHOAHSIAHSIHASIUASHOAHSIAHSIHASIUASHOAHSIAHSIHASIUASHOAHSIAHSIHASIUASHOAHSIAHSIHASIUASHOAHSIAHSIHASIUA" />
+
+</LinearLayout>
