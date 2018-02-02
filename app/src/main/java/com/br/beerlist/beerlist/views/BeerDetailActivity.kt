@@ -3,9 +3,12 @@ package com.br.beerlist.beerlist.views
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import com.br.beerlist.beerlist.R
+import com.miguelcatalan.materialsearchview.MaterialSearchView
+import kotlinx.android.synthetic.main.activity_list_beer.*
 import kotlinx.android.synthetic.main.view_search_toolbar.*
 
 class BeerDetailActivity : AppCompatActivity() {
@@ -16,6 +19,7 @@ class BeerDetailActivity : AppCompatActivity() {
 
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -25,6 +29,7 @@ class BeerDetailActivity : AppCompatActivity() {
                 onBackPressed()
                 return true
             }
+
             else -> return super.onOptionsItemSelected(item)
         }
     }

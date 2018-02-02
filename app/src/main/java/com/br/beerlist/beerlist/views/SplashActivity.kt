@@ -27,7 +27,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     fun callListBeersActivity() {
-        val intent = Intent(this@SplashActivity, ListBeerActivity::class.java)
+        val intent = Intent(this@SplashActivity, ContainerBeerActivity::class.java)
         startActivity(intent)
     }
 }

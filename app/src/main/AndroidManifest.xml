@@ -21,15 +21,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".views.ListBeerActivity"
+            android:name=".views.ContainerBeerActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".views.BeerDetailActivity"
             android:label="@string/title_act_beer_details" />
-        <activity
-            android:name=".views.SASAActivity"
-            android:label="@string/title_activity_sasa"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
