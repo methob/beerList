@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:background="@color/colorAccent"
+    android:background="?attr/selectableItemBackground"
     android:layout_marginBottom="2dp"
     android:layout_height="100dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/colorAccent"
+        android:layout_height="wrap_content">
 
     <ImageView
         android:layout_width="80dp"
@@ -61,5 +65,6 @@
         android:layout_centerVertical="true"
         android:src="@drawable/ic_keyboard_arrow_right" />
 
+    </RelativeLayout>
 
 </RelativeLayout>

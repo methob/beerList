@@ -15,7 +15,7 @@ class BeerModule {
 
     @Singleton
     @Provides
-    fun databaseModule(): DatabaseRealm {
+    fun databaseRealm(): DatabaseRealm {
         return DatabaseRealm()
     }
 

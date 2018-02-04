@@ -5,7 +5,6 @@ import com.br.beerlist.beerlist.di.Injector
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import io.realm.RealmObject
-import io.realm.kotlin.delete
 import javax.inject.Inject
 
 
@@ -18,7 +17,7 @@ class DatabaseRealm {
         Injector.component.inject(this)
     }
 
-    fun getRealmInstance() : Realm{
+    fun getRealmInstance(): Realm {
         return Realm.getDefaultInstance()
     }
 
@@ -37,22 +36,19 @@ class DatabaseRealm {
 
     fun remove(realmObject: RealmObject) {
 
-        if (realmObject.isManaged) {
+        val realm = getRealmInstance()
 
-            val realm = getRealmInstance()
-
-            if (!realm.isInTransaction) {
-                realm.beginTransaction()
-            }
-
-            realmObject.deleteFromRealm()
-
-            realm.commitTransaction()
-            realm.close()
+        if (!realm.isInTransaction) {
+            realm.beginTransaction()
         }
+
+        realmObject.deleteFromRealm()
+
+        realm.commitTransaction()
+        realm.close()
     }
 
-    fun getStandAloneObject(realmObject: RealmObject) :RealmObject  {
+    fun getStandAloneObject(realmObject: RealmObject): RealmObject {
 
         val realm = getRealmInstance()
         return realm.copyFromRealm(realmObject)
@@ -71,7 +67,7 @@ class DatabaseRealm {
         realm.close()
     }
 
-    fun add(realmObject: RealmObject) : Boolean {
+    fun add(realmObject: RealmObject): Boolean {
 
         val realm = getRealmInstance()
 
@@ -86,7 +82,7 @@ class DatabaseRealm {
         return true
     }
 
-    fun add(realmObject: List<RealmObject>) : Boolean {
+    fun add(realmObject: List<RealmObject>): Boolean {
 
         val realm = Realm.getDefaultInstance()
 

@@ -20,14 +20,15 @@ import kotlinx.android.synthetic.main.fragment_search_beer.view.*
 class SearchBeerFragment : BaseFragment<ContainerBeerActivity>(), BeerService.IListenerResponseBeers, MaterialSearchView.OnQueryTextListener {
 
     lateinit var service: BeerService
-    lateinit var fragmentView: View
+    var fragmentView: View? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        val view : View =  inflater.inflate(R.layout.fragment_search_beer, container, false)
 
-        this.fragmentView = view
+        if (this.fragmentView == null) {
+            val view : View =  inflater.inflate(R.layout.fragment_search_beer, container, false)
+            this.fragmentView = view
+        }
 
         service = BeerService()
 
@@ -35,7 +36,7 @@ class SearchBeerFragment : BaseFragment<ContainerBeerActivity>(), BeerService.IL
 
         setHasOptionsMenu(true)
 
-        return view
+        return fragmentView
     }
 
     fun setClickRecyclerView(adapter : ListBeersAdapter) {
@@ -56,8 +57,8 @@ class SearchBeerFragment : BaseFragment<ContainerBeerActivity>(), BeerService.IL
 
         } else {
 
-            fragmentView.progress_bar.visibility = View.VISIBLE
-            fragmentView.view_no_results_found.visibility = View.INVISIBLE
+            fragmentView!!.progress_bar.visibility = View.VISIBLE
+            fragmentView!!.view_no_results_found.visibility = View.INVISIBLE
 
             service.getBeersByName(query, this@SearchBeerFragment)
         }
@@ -71,27 +72,27 @@ class SearchBeerFragment : BaseFragment<ContainerBeerActivity>(), BeerService.IL
 
     override fun onResponseSuccessfully(beers: List<Beer>) {
 
-        fragmentView.progress_bar.visibility = View.GONE
+        fragmentView!!.progress_bar.visibility = View.GONE
 
         if (beers.isEmpty())
-            fragmentView.view_no_results_found.visibility = View.VISIBLE
+            fragmentView!!.view_no_results_found.visibility = View.VISIBLE
 
         val adapter = ListBeersAdapter(beers, activity!!)
-        fragmentView.recycler_view.adapter = adapter
+        fragmentView!!.recycler_view.adapter = adapter
         setClickRecyclerView(adapter)
     }
 
     override fun onResponseFailed(message: String) {
 
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-        fragmentView.progress_bar.visibility = View.GONE
-        fragmentView.view_no_results_found.visibility = View.VISIBLE
+        fragmentView!!.progress_bar.visibility = View.GONE
+        fragmentView!!.view_no_results_found.visibility = View.VISIBLE
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         super.onCreateOptionsMenu(menu, inflater)
 
-        inflater?.inflate(R.menu.menu_home, menu)
+        inflater?.inflate(R.menu.menu_search, menu)
 
         val item = menu?.findItem(R.id.action_search)
         activity!!.search_view.setMenuItem(item)

@@ -1,6 +1,7 @@
 package com.br.beerlist.beerlist.services
 
 import com.br.beerlist.beerlist.BeerApplication
+import com.br.beerlist.beerlist.R
 import com.br.beerlist.beerlist.di.Injector
 import com.br.beerlist.beerlist.models.Beer
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -25,20 +26,26 @@ class BeerService {
 
     fun getBeersByName(name: String, mListener: IListenerResponseBeers) {
 
-        mCompositeDisposable.add(
-                cloud.getApiInstance().getBearsByName(name).
-                        observeOn(AndroidSchedulers.mainThread())
-                        .subscribeOn(Schedulers.io())
-                        .subscribe(
-                        {
-                            beers -> mListener.onResponseSuccessfully(beers)
-                        },
-                        {
-                            error -> mListener.onResponseFailed(error.message!!)
-                        }
+        if (cloud.netWorkManager().isConnected()) {
 
-                )
-        )
+            mCompositeDisposable.add(
+                    cloud.getApiInstance().getBearsByName(name).
+                            observeOn(AndroidSchedulers.mainThread())
+                            .subscribeOn(Schedulers.io())
+                            .subscribe(
+                                    {
+                                        beers -> mListener.onResponseSuccessfully(beers)
+                                    },
+                                    {
+                                        error -> mListener.onResponseFailed(error.message!!)
+                                    }
+
+                            )
+            )
+        } else {
+
+            mListener.onResponseFailed(cloud.context.getString(R.string.txt_no_connection))
+        }
     }
 
     fun getBeerByIDFromDatabase(id: Int) : Beer? {

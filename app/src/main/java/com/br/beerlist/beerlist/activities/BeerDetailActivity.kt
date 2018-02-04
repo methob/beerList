@@ -17,7 +17,6 @@ import kotlinx.android.synthetic.main.activity_beer_detail.*
 class BeerDetailActivity : AppCompatActivity(), View.OnClickListener {
 
     lateinit var beer: Beer
-    var standaloneBeer: Beer? = null
     lateinit var beerService: BeerService
     var isFavorite: Boolean = false
 
@@ -56,19 +55,6 @@ class BeerDetailActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
 
-//        if (isFavorite) {
-//
-//            standaloneBeer = beerService.database.getStandAloneObject(beer) as Beer
-//            beerService.database.remove(beer)
-//
-//        } else {
-//
-//            if (standaloneBeer == null)
-//                beerService.database.add(beer)
-//            else
-//                beerService.database.addStandAloneObject(beer)
-//        }
-
         isFavorite = !isFavorite
 
         if (isFavorite) {
@@ -77,7 +63,7 @@ class BeerDetailActivity : AppCompatActivity(), View.OnClickListener {
         } else {
 
             ic_heart.setImageResource(R.drawable.ic_favorite_border)
-            ic_heart.drawable.setColorFilter(ContextCompat.getColor(this, android.R.color.darker_gray), PorterDuff.Mode.SRC_ATOP)
+            ic_heart.drawable.setColorFilter(ContextCompat.getColor(this, android.R.color.darker_gray), PorterDuff.Mode.SRC_IN)
         }
     }
 
@@ -99,7 +85,6 @@ class BeerDetailActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle item selection
         when (item.itemId) {
             android.R.id.home -> {
                 onBackPressed()

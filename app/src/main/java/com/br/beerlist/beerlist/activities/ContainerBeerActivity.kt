@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.activity_list_beer.*
 
 class ContainerBeerActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
+    var searchBeerFragment : SearchBeerFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +35,12 @@ class ContainerBeerActivity : AppCompatActivity(), BottomNavigationView.OnNaviga
 
         when (item.itemId) {
             R.id.menu_search -> {
-                replaceFragment(SearchBeerFragment())
+
+                if (searchBeerFragment == null) {
+                    searchBeerFragment = SearchBeerFragment()
+                }
+
+                replaceFragment(searchBeerFragment!!)
             }
             R.id.menu_favorite -> {
                 search_view.closeSearch()

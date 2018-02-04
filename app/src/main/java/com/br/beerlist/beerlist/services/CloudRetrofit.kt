@@ -1,8 +1,10 @@
 package com.br.beerlist.beerlist.services
 
+import android.content.Context
 import com.br.beerlist.beerlist.BuildConfigApp
 import com.br.beerlist.beerlist.api.PunkBeersApi
 import com.br.beerlist.beerlist.di.Injector
+import com.br.beerlist.beerlist.utils.NetworkManager
 import com.google.gson.ExclusionStrategy
 import com.google.gson.FieldAttributes
 import com.google.gson.Gson
@@ -15,6 +17,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.security.cert.CertificateException
 import java.security.cert.X509Certificate
+import javax.inject.Inject
 import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
@@ -24,8 +27,15 @@ import javax.net.ssl.X509TrustManager
  */
 class CloudRetrofit {
 
+    @Inject
+    lateinit var context: Context
+
     init {
         Injector.component.inject(this)
+    }
+
+    fun netWorkManager() : NetworkManager {
+        return NetworkManager(context)
     }
 
     private fun removeRealmParams(): Gson {

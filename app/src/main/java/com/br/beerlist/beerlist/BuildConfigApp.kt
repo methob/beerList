@@ -10,7 +10,4 @@ class BuildConfigApp {
         // CONSTANTS
         val FRAGMENT_PARAM_BEER :String = "fragment_param_beer"
     }
-
-
-
 }
