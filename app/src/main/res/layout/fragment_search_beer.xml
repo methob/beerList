@@ -5,9 +5,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.br.beerlist.beerlist.fragments.SearchBeerFragment">
 
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp"
+        android:id="@+id/recycler_view"
+        app:layoutManager="LinearLayoutManager" />
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        android:id="@+id/progress_bar" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/view_no_results_found"
         android:gravity="center_horizontal"
         android:layout_centerInParent="true">
 
@@ -27,8 +42,7 @@
             android:textColor="@android:color/black"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/ic_search"
-            android:text="No results were found"
-            />
+            android:text="@string/txt_no_result_found" />
 
     </RelativeLayout>
 

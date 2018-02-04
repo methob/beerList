@@ -1,4 +1,4 @@
-package com.br.beerlist.beerlist.views
+package com.br.beerlist.beerlist.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -28,6 +28,7 @@ class SplashActivity : AppCompatActivity() {
 
     fun callListBeersActivity() {
         val intent = Intent(this@SplashActivity, ContainerBeerActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(intent)
     }
 }

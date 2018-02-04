@@ -1,33 +1,53 @@
 package com.br.beerlist.beerlist.services
 
+import com.br.beerlist.beerlist.BeerApplication
+import com.br.beerlist.beerlist.di.Injector
 import com.br.beerlist.beerlist.models.Beer
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 
-class BeerService : BaseService() {
+class BeerService {
 
+    @Inject
+    lateinit var cloud: CloudRetrofit
 
-    fun getBeersByName(name:String) {
+    @Inject
+    lateinit var database: DatabaseRealm
 
-        val call = getApiInstance().getBearsByName(name)
+    private val mCompositeDisposable = CompositeDisposable()
 
-        call.enqueue(object : Callback<Beer> {
+    init {
+        Injector.component.inject(this)
+    }
 
-            override fun onResponse(call: Call<Beer>, response: Response<Beer>) {
+    fun getBeersByName(name: String, mListener: IListenerResponseBeers) {
 
-                if (response.isSuccessful) {
+        mCompositeDisposable.add(
+                cloud.getApiInstance().getBearsByName(name).
+                        observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(Schedulers.io())
+                        .subscribe(
+                        {
+                            beers -> mListener.onResponseSuccessfully(beers)
+                        },
+                        {
+                            error -> mListener.onResponseFailed(error.message!!)
+                        }
 
-                } else {
+                )
+        )
+    }
 
-                }
-            }
+    fun getBeerByIDFromDatabase(id: Int) : Beer? {
+        return database.getRealmInstance().where(Beer::class.java).equalTo("id", id).findFirst()
+    }
 
-            override fun onFailure(call: Call<Beer>, t: Throwable) {
+    interface IListenerResponseBeers  {
 
-            }
-        })
+        fun onResponseSuccessfully(beers: List<Beer>)
+        fun onResponseFailed(message:String)
     }
 }

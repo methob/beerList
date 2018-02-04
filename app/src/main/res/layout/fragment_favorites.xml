@@ -1,13 +1,43 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.br.beerlist.beerlist.fragments.FavoritesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_marginTop="8dp"
+        android:id="@+id/recycler_view_favorites"
+        app:layoutManager="LinearLayoutManager" />
 
-</FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rel_favorite_not_beers_found"
+        android:gravity="center_horizontal"
+        android:layout_centerInParent="true">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/ic_search"
+            app:tint="@android:color/black"
+            android:src="@drawable/ic_search" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            android:textColor="@android:color/black"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/ic_search"
+            android:text="@string/txt_no_result_found" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
