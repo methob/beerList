@@ -16,4 +16,6 @@
     <string name="txt_tab_favorites">Favoritos</string>
     <string name="txt_no_result_found">Nenhum resultado encontrado</string>
     <string name="txt_no_connection">Não há conexão com a internet.</string>
+    <string name="act_container_txt_title">Beer List</string>
+    <string name="txt_serch_empty">Escreva algo antes de pesquisar</string>
 </resources>

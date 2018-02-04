@@ -36,16 +36,19 @@ class DatabaseRealm {
 
     fun remove(realmObject: RealmObject) {
 
-        val realm = getRealmInstance()
+        if (realmObject.isManaged) {
 
-        if (!realm.isInTransaction) {
-            realm.beginTransaction()
+            val realm = getRealmInstance()
+
+            if (!realm.isInTransaction) {
+                realm.beginTransaction()
+            }
+
+            realmObject.deleteFromRealm()
+
+            realm.commitTransaction()
+            realm.close()
         }
-
-        realmObject.deleteFromRealm()
-
-        realm.commitTransaction()
-        realm.close()
     }
 
     fun getStandAloneObject(realmObject: RealmObject): RealmObject {

@@ -1,7 +1,7 @@
 package com.br.beerlist.beerlist.services
 
 import android.content.Context
-import com.br.beerlist.beerlist.BuildConfigApp
+import com.br.beerlist.beerlist.utils.BuildConfigApp
 import com.br.beerlist.beerlist.api.PunkBeersApi
 import com.br.beerlist.beerlist.di.Injector
 import com.br.beerlist.beerlist.utils.NetworkManager
@@ -10,7 +10,6 @@ import com.google.gson.FieldAttributes
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import dagger.Provides
 import io.realm.RealmObject
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -22,9 +21,6 @@ import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
 
-/**
- * Created by jonathan on 03/02/2018.
- */
 class CloudRetrofit {
 
     @Inject

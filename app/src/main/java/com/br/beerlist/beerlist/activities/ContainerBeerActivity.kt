@@ -40,7 +40,7 @@ class ContainerBeerActivity : AppCompatActivity(), BottomNavigationView.OnNaviga
                     searchBeerFragment = SearchBeerFragment()
                 }
 
-                replaceFragment(searchBeerFragment!!)
+                replaceFragment(searchBeerFragment!!) // salva instancia da fragment para que não seja carregada de novo.
             }
             R.id.menu_favorite -> {
                 search_view.closeSearch()

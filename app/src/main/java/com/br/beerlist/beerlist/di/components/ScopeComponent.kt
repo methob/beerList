@@ -9,9 +9,7 @@ import com.br.beerlist.beerlist.services.DatabaseRealm
 import dagger.Component
 import javax.inject.Singleton
 
-/**
- * Created by jonathan on 01/02/2018.
- */
+// Unico componente da aplicação
 @Singleton
 @Component(modules = arrayOf( ApplicationModule::class, BeerModule::class))
 interface ScopeComponent {
@@ -21,4 +19,5 @@ interface ScopeComponent {
 
     fun inject(cloudRetrofit: CloudRetrofit)
     fun inject(databaseRealm: DatabaseRealm)
+
 }

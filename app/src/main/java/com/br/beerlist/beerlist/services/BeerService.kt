@@ -1,6 +1,5 @@
 package com.br.beerlist.beerlist.services
 
-import com.br.beerlist.beerlist.BeerApplication
 import com.br.beerlist.beerlist.R
 import com.br.beerlist.beerlist.di.Injector
 import com.br.beerlist.beerlist.models.Beer
@@ -9,7 +8,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-
+// Metodos para acesso ao banco de dados e api rest
 class BeerService {
 
     @Inject
@@ -24,6 +23,7 @@ class BeerService {
         Injector.component.inject(this)
     }
 
+    // Request para obter o nome do repositorio,
     fun getBeersByName(name: String, mListener: IListenerResponseBeers) {
 
         if (cloud.netWorkManager().isConnected()) {
@@ -39,7 +39,6 @@ class BeerService {
                                     {
                                         error -> mListener.onResponseFailed(error.message!!)
                                     }
-
                             )
             )
         } else {
@@ -48,10 +47,17 @@ class BeerService {
         }
     }
 
+    // para de ouvir os eventos
+    fun clearContentDisposable() {
+        mCompositeDisposable.clear()
+    }
+
+    // Obtem uma beer do banco
     fun getBeerByIDFromDatabase(id: Int) : Beer? {
         return database.getRealmInstance().where(Beer::class.java).equalTo("id", id).findFirst()
     }
 
+    // Listener para resposta do request
     interface IListenerResponseBeers  {
 
         fun onResponseSuccessfully(beers: List<Beer>)

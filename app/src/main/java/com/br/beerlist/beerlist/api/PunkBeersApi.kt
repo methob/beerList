@@ -5,7 +5,7 @@ import io.reactivex.Observable
 import retrofit2.Call
 import retrofit2.http.*
 
-
+// Requests, retorna um Observable, contendo uma lista de bebidas
 interface PunkBeersApi {
 
     @GET("beers")

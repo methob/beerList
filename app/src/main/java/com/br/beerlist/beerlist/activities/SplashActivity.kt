@@ -17,7 +17,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        Observable.just(true).
+        Observable.just(true). // Chama Próxima activity após 2 segundos.
                 delay(2, TimeUnit.SECONDS).
                 subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).

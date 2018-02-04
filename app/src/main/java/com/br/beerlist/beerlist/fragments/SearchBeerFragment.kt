@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
-import com.br.beerlist.beerlist.BuildConfigApp
+import com.br.beerlist.beerlist.utils.BuildConfigApp
 import com.br.beerlist.beerlist.R
 import com.br.beerlist.beerlist.activities.BeerDetailActivity
 import com.br.beerlist.beerlist.activities.ContainerBeerActivity
@@ -25,7 +25,7 @@ class SearchBeerFragment : BaseFragment<ContainerBeerActivity>(), BeerService.IL
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        if (this.fragmentView == null) {
+        if (this.fragmentView == null) { // Se já tiver passado por essa tela antes, aproveite a view retornada
             val view : View =  inflater.inflate(R.layout.fragment_search_beer, container, false)
             this.fragmentView = view
         }
@@ -41,7 +41,7 @@ class SearchBeerFragment : BaseFragment<ContainerBeerActivity>(), BeerService.IL
 
     fun setClickRecyclerView(adapter : ListBeersAdapter) {
 
-        adapter.clickEvent.subscribe({
+        adapter.clickEvent.subscribe({ // Click da lista
             beer: Beer? ->
                 val intent = Intent(activity, BeerDetailActivity::class.java)
                 intent.putExtra(BuildConfigApp.FRAGMENT_PARAM_BEER, beer)
@@ -51,16 +51,16 @@ class SearchBeerFragment : BaseFragment<ContainerBeerActivity>(), BeerService.IL
 
     override fun onQueryTextSubmit(query: String?): Boolean {
 
-        if (query == null || query.isEmpty()) {
+        if (query == null || query.isEmpty()) { // Teste for Vazio não deixar pesquisar
 
-            Toast.makeText(context, "Escreva algo antes de pesquisar", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, getString(R.string.txt_serch_empty), Toast.LENGTH_LONG).show()
 
         } else {
 
             fragmentView!!.progress_bar.visibility = View.VISIBLE
             fragmentView!!.view_no_results_found.visibility = View.INVISIBLE
 
-            service.getBeersByName(query, this@SearchBeerFragment)
+            service.getBeersByName(query, this@SearchBeerFragment) // Fazer Request de bebidas
         }
 
         return true
@@ -70,7 +70,7 @@ class SearchBeerFragment : BaseFragment<ContainerBeerActivity>(), BeerService.IL
         return true
     }
 
-    override fun onResponseSuccessfully(beers: List<Beer>) {
+    override fun onResponseSuccessfully(beers: List<Beer>) { // Sucesso no Request, Preencher Lista com beers
 
         fragmentView!!.progress_bar.visibility = View.GONE
 
@@ -82,14 +82,17 @@ class SearchBeerFragment : BaseFragment<ContainerBeerActivity>(), BeerService.IL
         setClickRecyclerView(adapter)
     }
 
-    override fun onResponseFailed(message: String) {
+    override fun onResponseFailed(message: String) { // Falha no Request
 
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
         fragmentView!!.progress_bar.visibility = View.GONE
         fragmentView!!.view_no_results_found.visibility = View.VISIBLE
+
+        if (isAdded) {
+            Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+        }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) { // Preencher lupa de pesquisa
         super.onCreateOptionsMenu(menu, inflater)
 
         inflater?.inflate(R.menu.menu_search, menu)

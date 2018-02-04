@@ -2,13 +2,12 @@ package com.br.beerlist.beerlist.fragments
 
 
 import android.content.Intent
-import android.opengl.Visibility
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.br.beerlist.beerlist.BuildConfigApp
+import com.br.beerlist.beerlist.utils.BuildConfigApp
 import com.br.beerlist.beerlist.R
 import com.br.beerlist.beerlist.activities.BeerDetailActivity
 import com.br.beerlist.beerlist.activities.ContainerBeerActivity
@@ -38,13 +37,14 @@ class FavoritesFragment : BaseFragment<ContainerBeerActivity>() {
     fun setClickRecyclerView(adapter: ListBeersAdapter) {
 
         adapter.clickEvent.subscribe({
-            beer: Beer? ->
+            beer: Beer? -> // click da lista
             val intent = Intent(activity, BeerDetailActivity::class.java)
             intent.putExtra(BuildConfigApp.FRAGMENT_PARAM_BEER, beer)
             startActivity(intent)
         })
     }
 
+    /* Ontem todas as beers do banco e preenche a lista*/
     override fun onStart() {
         super.onStart()
 

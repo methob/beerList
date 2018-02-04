@@ -5,11 +5,10 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
-import java.io.Serializable
 
 open class Beer() : RealmObject(), Parcelable {
 
-    @PrimaryKey
+    @PrimaryKey // Chave Primaria
     var id:Int = 0
 
     @SerializedName("image_url")
@@ -27,7 +26,7 @@ open class Beer() : RealmObject(), Parcelable {
         name = parcel.readString()
         description = parcel.readString()
         tagline = parcel.readString()
-    }
+    } // serializa Objeto
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)

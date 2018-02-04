@@ -30,8 +30,7 @@
             android:name=".activities.BeerDetailActivity"
             android:label="@string/title_act_beer_details"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
-            />
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

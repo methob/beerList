@@ -6,7 +6,7 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
-
+// Modulo da aplicação, provém contexto e uma instancia da própria aplicação
 @Module
 class ApplicationModule(var application: BeerApplication) {
 

@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment
 
 @Suppress("UNCHECKED_CAST")
 
+/* Activity para se colocar metodos comuns a todas as fragments do projeto, nesse projeto não houve.*/
 open class BaseFragment<T> : Fragment() {
 
 

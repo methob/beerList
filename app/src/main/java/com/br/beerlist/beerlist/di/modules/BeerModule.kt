@@ -7,9 +7,7 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
-/**
- * Created by jonathan on 03/02/2018.
- */
+/* Provém modules de banco de dados e da API RESTFUL*/
 @Module
 class BeerModule {
 

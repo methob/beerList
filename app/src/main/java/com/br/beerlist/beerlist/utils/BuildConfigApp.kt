@@ -1,4 +1,4 @@
-package com.br.beerlist.beerlist
+package com.br.beerlist.beerlist.utils
 
 class BuildConfigApp {
 

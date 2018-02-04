@@ -7,6 +7,7 @@ import com.br.beerlist.beerlist.di.modules.ApplicationModule
 import com.br.beerlist.beerlist.di.modules.BeerModule
 
 
+/* Injeta a aplicação e serve para injetar outros componentes do projeto*/
 class Injector {
 
     companion object {
