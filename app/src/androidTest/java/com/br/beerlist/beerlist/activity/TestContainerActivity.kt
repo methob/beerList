@@ -1,29 +1,52 @@
 package com.br.beerlist.beerlist.activity
 
-import android.support.test.InstrumentationRegistry
-import android.support.test.espresso.DaggerBaseLayerComponent
+import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
-import com.br.beerlist.beerlist.di.component.TestComponent
+import com.br.beerlist.beerlist.activities.ContainerBeerActivity
+import com.miguelcatalan.materialsearchview.MaterialSearchView
+import kotlinx.android.synthetic.main.activity_list_beer.*
+import org.junit.Assert
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.MockitoAnnotations
 
 @RunWith(AndroidJUnit4::class)
 class TestContainerActivity {
 
-    private lateinit var testAppComponent: TestComponent
+    @Rule
+    @JvmField
+    var rule: ActivityTestRule<ContainerBeerActivity> = ActivityTestRule(ContainerBeerActivity::class.java)
+
+    lateinit var activity: ContainerBeerActivity
 
     @Before
-    fun initDependencies() {
+    fun initClass() {
 
-        MockitoAnnotations.initMocks(this)
-        val app = InstrumentationRegistry.getTargetContext().applicationContext
-//        DaggerBaseLayerComponent.builder().
+        activity = rule.activity
     }
 
+    @Throws
     @Test
     fun testSearchView() {
+
+        val searchView: MaterialSearchView = activity.search_view
+
+        searchView.setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener {
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+
+                Assert.assertTrue(query != null && query.isEmpty())
+
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                return true
+            }
+
+        })
 
     }
 }
